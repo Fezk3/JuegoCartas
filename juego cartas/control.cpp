@@ -73,6 +73,7 @@ void control::menu(){
 					}
 					
 				} while(!subF);
+				subF = false;
 				
 			}
 			
@@ -85,8 +86,6 @@ void control::menu(){
 		}
 		
 	} while(!fin);
-	
-	subF = false;
 	
 }
 
