@@ -10,7 +10,6 @@ public:
 	void reparteCarta();
 	jugador decidirGanador();
 	string decidirGanadorRonda();
-	void apostarMonedas(jugador actual);
 	string mostrarJugadores();
 	void resetRonda();
 	string decidirPerdedoresRonda();
