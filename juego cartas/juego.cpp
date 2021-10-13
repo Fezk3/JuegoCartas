@@ -8,6 +8,25 @@ juego::juego() {
 	
 }
 
+void juego::resetRonda(){
+	
+	jugadores.at(0).setMonedas(999);
+	
+	for(int i=0;i<jugadores.size()-1;i++){
+		
+		jugadores.at(i).setPuntaje(0);
+		jugadores.at(i).setApuesta(50);
+		
+		while(!jugadores.at(i).pila.empty()){
+			
+			jugadores.at(i).pila.pop();
+			
+		}
+		
+	}
+	
+}
+
 void juego::agregarJugador(jugador* nuevo){
 	jugadores.push_back(*nuevo);
 }

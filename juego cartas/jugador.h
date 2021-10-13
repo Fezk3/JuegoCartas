@@ -17,13 +17,14 @@ public:
 	int getPuntaje();
 	int DoblarApuesta();
     string toString();
+	stack<carta> pila;
     
 private:
     string nombre;
     int monedas;
 	int apuesta;
 	int puntaje;
-    stack<carta> pila;
+	
 };
 
 #endif /* JUGADOR_H */
