@@ -2,6 +2,9 @@
 #include <sstream>
 
 juego::juego() {
+	jugador maquina("maquina");
+	maquina.setMonedas(999);
+	jugadores.push_back(maquina);
 	
 }
 
@@ -55,4 +58,11 @@ jugador juego::decidirGanador(){
 		
 	}
 	return ganador;
+}
+
+string juego::mostrarJugadores(){
+	stringstream x;
+	jugador a=jugadores.at(0);
+	x<<a.toString();
+	return x.str();
 }

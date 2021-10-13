@@ -1,10 +1,11 @@
 #include <cstdlib>
-#include "mazo.h"
 #include "control.h"
 using namespace std;
 
 
 int main(int argc, char** argv) {
+	
+
 	/*
 	mazo m;
 	m.llenarMazo();
