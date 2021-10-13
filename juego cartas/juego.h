@@ -10,10 +10,11 @@ public:
 	void reparteCarta();
 	jugador decidirGanador();
 	string decidirGanadorRonda();
-	void apostarMonedas(jugador actual);
 	string mostrarJugadores();
 	void resetRonda();
 	bool checkeaMonedas();
+	string decidirPerdedoresRonda();
+	
 private:
 	vector<jugador> jugadores; 
 	mazo mazito;
