@@ -26,6 +26,23 @@ void juego::resetRonda(){
 	
 }
 
+// si alguien no puede apostar, se termina el juego!
+bool juego::checkeaMonedas(){
+	
+	for(int i=0;i<jugadores.size();i++){
+		
+		if(jugadores.at(i).getMonedas() < 50){
+			
+			return false;
+			
+		}
+		
+	}
+	
+	return true;
+	
+}
+
 void juego::agregarJugador(jugador* nuevo){
 	jugadores.push_back(*nuevo);
 }
