@@ -32,9 +32,9 @@ void juego::agregarJugador(jugador* nuevo){
 
 void juego::reparteCarta(){
 	
-	for(int i=0;i<4;i++){
-		jugador actual = jugadores.at(i);
-		actual.recibeCarta(mazito.getMaz().front());
+	for(int i=0;i<jugadores.size()-1;i++){
+		
+		jugadores.at(i).recibeCarta(mazito.getMaz().front());
 		mazito.getMaz().pop();
 		
 	}
@@ -47,14 +47,14 @@ void juego::apostarMonedas(jugador actual){
 string juego::decidirGanadorRonda(){
 	
 	stringstream x;
-	for(int i=0;i<4;i++){
-		jugador actual = jugadores.at(i);
-		if(actual.getPuntaje()==21){
+	for(int i=0;i<jugadores.size()-1;i++){
+		
+		if(jugadores.at(i).getPuntaje()==21){
 			
-			int apuesta=actual.getApuesta()*2;
-			int monenasRest =actual.getMonedas();
-			actual.setMonedas(monenasRest + apuesta);
-			x<<actual.toString()<<"\n";
+			int apuesta=jugadores.at(i).getApuesta()*2;
+			int monenasRest =jugadores.at(i).getMonedas();
+			jugadores.at(i).setMonedas(monenasRest + apuesta);
+			x<<jugadores.at(i).toString()<<"\n";
 		}
 		
 	}
@@ -64,14 +64,14 @@ string juego::decidirGanadorRonda(){
 jugador juego::decidirGanador(){
 	jugador ganador;
 	stringstream x;
-	for(int i=0;i<3;i++){
-		jugador actual = jugadores.at(i);
-		jugador siguiente = jugadores.at(i+1);
-		if(actual.getMonedas()<siguiente.getMonedas()){
+	for(int i=0;i<=jugadores.size()-2;i++){
+		
+		
+		if(jugadores.at(i).getMonedas()<jugadores.at(i+1).getMonedas()){
 			
-			ganador=siguiente;
+			ganador=jugadores.at(i+1);
 		}else{
-			ganador=actual;
+			ganador=jugadores.at(i);
 		}
 		
 	}
@@ -80,7 +80,10 @@ jugador juego::decidirGanador(){
 
 string juego::mostrarJugadores(){
 	stringstream x;
-	jugador a=jugadores.at(0);
-	x<<a.toString();
+	for(int i=0;i<jugadores.size()-1;i++){
+		
+		x<<jugadores.at(i).toString();
+	}
 	return x.str();
 }
+

@@ -13,7 +13,7 @@ jugador::jugador(){
 jugador::jugador(string nombre) {
     this->nombre=nombre;
     monedas=500;
-	puntaje = 0;
+	puntaje = 0; 
 }
 
 jugador::~jugador() {
@@ -71,13 +71,15 @@ string jugador::toString(){
 	
     stringstream x;
     x<<"El nombre es: "<<nombre<<"\n";
-    x<<"Cantidad de monedas: "<<monedas<<"\n";
+	x<<"Cantidad de monedas: "<<monedas<<"\n";
 	x<<"Cartas en mano: \n";
 	
     while(!pila.empty()){
         x<<&pila.top()<<"\n";
         pila.pop();
     }
+    x<<"Esta apostando: "<<apuesta<<"\n";
+	x<<"el puntaje de las cartas es: "<<puntaje<<"\n"; 
 	
     return x.str();
 }

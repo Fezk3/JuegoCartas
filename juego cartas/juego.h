@@ -13,6 +13,8 @@ public:
 	void apostarMonedas(jugador actual);
 	string mostrarJugadores();
 	void resetRonda();
+	string decidirPerdedoresRonda();
+	
 private:
 	vector<jugador> jugadores; 
 	mazo mazito;
