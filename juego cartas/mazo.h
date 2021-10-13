@@ -11,6 +11,7 @@ public:
     void llenarMazo();
     string mostrar();
 	void revolver();
+	queue<carta> getMaz();
 private:
     queue<carta> maz;
 };

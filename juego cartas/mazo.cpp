@@ -124,3 +124,7 @@ string mazo::mostrar() {
     }
     return x.str();
 }
+
+queue<carta> mazo::getMaz(){
+	
+}

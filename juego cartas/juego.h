@@ -10,6 +10,7 @@ public:
 	void reparteCarta()
 private:
 	vector<jugador> jugadores; 
+	mazo mazito;
 };
 
 #endif
