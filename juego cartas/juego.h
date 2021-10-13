@@ -8,6 +8,9 @@ public:
 	juego();
 	void agregarJugador(jugador*);
 	void reparteCarta();
+	jugador decidirGanador();
+	string decidirGanadorRonda();
+	void apostarMonedas(jugador actual);
 private:
 	vector<jugador> jugadores; 
 	mazo mazito;

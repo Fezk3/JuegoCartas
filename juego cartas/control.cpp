@@ -13,7 +13,6 @@ control::~control(){
 void control::menu(){
 	
 	string op;
-	bool subF = false, fin = false;
 	
 	do{
 		
@@ -92,8 +91,5 @@ void control::menu(){
 void control::menu1ply(){
 	
 	cout<<"Menu 1 Jugador\n";
-	
-	
-	
-	
+
 }

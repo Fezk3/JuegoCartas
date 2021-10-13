@@ -1,7 +1,12 @@
 #include <sstream>
 
 #include "jugador.h"
-
+jugador::jugador(){
+	nombre = "";
+	monedas = 0;
+	puntaje = 0;
+	pila;
+}
 
 jugador::jugador(string nombre) {
     this->nombre=nombre;
