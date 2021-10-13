@@ -99,14 +99,21 @@ void mazo::revolver() {
 		barajaCopia.push_back(a);
 		maz.pop();
 	}
-	std::random_device rd;
-	std::default_random_engine rng(rd());
+	std::random_device rand;
+	std::default_random_engine rng(rand());
 	shuffle(barajaCopia.begin(), barajaCopia.end(), rng);
+	
+	/*for(int i=0;i<52;i++){
+		carta a=barajaCopia.at(i);
+		cout<<a.toString()<<endl;
+	}*/
 	
 	for(int i=0;i<52;i++){
 		carta a=barajaCopia.at(i);
-		cout<<a.toString()<<endl;
+		maz.push(a);
 	}
+	
+	//https://www.delftstack.com/howto/cpp/shuffle-vector-cpp/
 }
 
 string mazo::mostrar() {

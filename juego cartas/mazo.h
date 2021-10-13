@@ -1,4 +1,3 @@
-
 #ifndef MAZO_H
 #define MAZO_H
 #include "carta.h"

@@ -9,7 +9,8 @@ int main(int argc, char** argv) {
 	//cout<<m.mostrar();
 	
 	m.revolver();
-	cout<<m.mostrar();
+	
+	//cout<<m.mostrar();
 	return 0;
 }
 
