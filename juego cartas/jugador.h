@@ -7,11 +7,18 @@ class jugador {
 public:
     jugador(string nombre);
     virtual ~jugador();
+	void recibeCarta(carta);
+	void setMonedas(int);
+	int getMonedas();
+	void setApuesta(int);
+	int getApuesta();
+	int DoblarApuesta();
     string toString();
     
 private:
     string nombre;
     int monedas;
+	int apuesta;
     stack<carta> pila;
 };
 
