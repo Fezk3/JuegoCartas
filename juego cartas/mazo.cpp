@@ -1,6 +1,8 @@
 #include <sstream>
 
 #include "mazo.h"
+#include <algorithm>
+#include <random>
 
 mazo::mazo() {
 
@@ -90,29 +92,21 @@ void mazo::llenarMazo() {
 }
 
 void mazo::revolver() {
-    vector<carta> barajaCopia(54);
-    for (int i = 0; i < barajaCopia.size(); i++) {
-        barajaCopia.push_back((*new carta(' ', "")));
-    }
-    for (auto i = 0; i < barajaCopia.size(); i++) {
-
-        if (barajaCopia.at(i).toString() == ".") {
-            carta a = maz.front();
-            barajaCopia.push_back(maz.front());
-            maz.pop();
-        }
-    }
-    for (auto i = barajaCopia.begin(); i != barajaCopia.end(); i++) {
-        /*carta a=barajaCopia.back();
-        maz.push(a);
-        barajaCopia.pop_back();*/
-        while (!barajaCopia.empty()) {
-            carta a = barajaCopia.back();
-            cout << &a.toString << "\n";
-            barajaCopia.pop_back();
-        }
-    }
-
+    vector<carta> barajaCopia;
+	//generar barajados distintos cada vez
+	while(!maz.empty()){
+		carta a=maz.front();
+		barajaCopia.push_back(a);
+		maz.pop();
+	}
+	std::random_device rd;
+	std::default_random_engine rng(rd());
+	shuffle(barajaCopia.begin(), barajaCopia.end(), rng);
+	
+	for(int i=0;i<52;i++){
+		carta a=barajaCopia.at(i);
+		cout<<a.toString()<<endl;
+	}
 }
 
 string mazo::mostrar() {

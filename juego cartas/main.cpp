@@ -6,7 +6,7 @@ using namespace std;
 int main(int argc, char** argv) {
 	mazo m;
 	m.llenarMazo();
-	cout<<m.mostrar();
+	//cout<<m.mostrar();
 	
 	m.revolver();
 	cout<<m.mostrar();
