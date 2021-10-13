@@ -93,12 +93,14 @@ string juego::decidirGanadorRonda(){
 jugador juego::decidirGanador(){
 	jugador ganador;
 	stringstream x;
-	for(int i=0;i<jugadores.size()-1;i++){
+	if(jugadores.size()==2){
+		return jugadores.at(0);
+	}
+	for(int i=jugadores.size()-1;i>0;i--){
 		
-		
-		if(jugadores.at(i).getMonedas()<jugadores.at(i+1).getMonedas()){
+		if(jugadores.at(i).getMonedas()<jugadores.at(i-1).getMonedas()){
 			
-			ganador=jugadores.at(i+1);
+			ganador=jugadores.at(i-1);
 		}else{
 			ganador=jugadores.at(i);
 		}
