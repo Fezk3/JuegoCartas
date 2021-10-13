@@ -18,6 +18,7 @@ public:
 	int DoblarApuesta();
     string toString();
 	stack<carta> pila;
+	void definirPuntaje(carta);
     
 private:
     string nombre;

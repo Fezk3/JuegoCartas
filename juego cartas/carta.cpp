@@ -18,3 +18,7 @@ string carta::toString(){
     x<<signo<<"."<<valor<<"\n";
     return x.str();
 }
+
+string carta::getValor(){
+	return valor;
+}

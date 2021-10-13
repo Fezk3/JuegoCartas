@@ -14,6 +14,7 @@ public:
 	void resetRonda();
 	bool checkeaMonedas();
 	string decidirPerdedoresRonda();
+	void definirPuntaje();
 	
 private:
 	vector<jugador> jugadores; 

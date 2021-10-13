@@ -2,9 +2,9 @@
 #include <sstream>
 
 juego::juego() {
-	jugador maquina("maquina");
+	/*jugador maquina("maquina");
 	maquina.setMonedas(999);
-	jugadores.push_back(maquina);
+	jugadores.push_back(maquina);*/
 	
 }
 
@@ -64,12 +64,27 @@ string juego::decidirGanadorRonda(){
 		
 		if(jugadores.at(i).getPuntaje()==21){
 			
-			int apuesta=jugadores.at(i).getApuesta()*2;
+			int apuesta=jugadores.at(i).getApuesta()*6;
 			int monenasRest =jugadores.at(i).getMonedas();
 			jugadores.at(i).setMonedas(monenasRest + apuesta);
 			x<<jugadores.at(i).toString()<<"\n";
 		}
-		
+		else if(jugadores.back().getPuntaje()<jugadores.at(i).getPuntaje()){
+			
+			int apuesta=jugadores.at(i).getApuesta()*2;
+			int monenasRest =jugadores.at(i).getMonedas();
+			jugadores.at(i).setMonedas(monenasRest + apuesta);
+			x<<jugadores.at(i).toString()<<"\n";
+			
+		}
+		else if(jugadores.back().getPuntaje()==jugadores.at(i).getPuntaje()){
+			
+			int apuesta=jugadores.at(i).getApuesta();
+			int monenasRest =jugadores.at(i).getMonedas();
+			jugadores.at(i).setMonedas(monenasRest + apuesta);
+			x<<jugadores.at(i).toString()<<"\n";
+			
+		}
 	}
 	resetRonda();
 	return x.str();
@@ -103,10 +118,20 @@ string juego::mostrarJugadores(){
 
 string juego::decidirPerdedoresRonda(){
 	stringstream x;
-	for(int i=1;i<jugadores.size();i++){
-		if(jugadores.at(i).getPuntaje()<jugadores.at(0).getPuntaje() ||21 <jugadores.at(i).getPuntaje() ){
+	for(int i=0;i<jugadores.size()-1;i++){
+		if(jugadores.at(i).getPuntaje()<jugadores.back().getPuntaje() ||21 <jugadores.at(i).getPuntaje() ){
 			x<<jugadores.at(i).toString()<<"\n";
 		}
 	}
 	return x.str();
 }
+
+/*void juego::definirPuntaje(){
+	for(int i=0;i<jugadores.size();i++){
+		carta actual=jugadores.at(i).pila.top();
+		int puntaje= jugadores.at(i).getPuntaje();
+		
+		
+
+	}
+}*/
