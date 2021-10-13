@@ -12,13 +12,53 @@ jugador::jugador(string nombre) {
 jugador::~jugador() {
 }
 
+void jugador::recibeCarta(carta nueva){
+	
+	pila.push(nueva);
+	
+}
+
+void jugador::setMonedas(int mone){
+	
+	this->monedas = mone;
+	
+}
+
+int jugador::getMonedas(){
+	
+	return monedas;
+	
+}
+
+void jugador::setApuesta(int apu){
+	
+	this->apuesta=apu;
+	
+}
+
+int jugador::getApuesta(){
+	
+	return apuesta;
+	
+}
+
+int jugador::DoblarApuesta(){
+	
+	return getApuesta() * 2;
+	
+}
+
 string jugador::toString(){
+	
     stringstream x;
     x<<"El nombre es: "<<nombre<<"\n";
     x<<"Cantidad de monedas"<<monedas<<"\n";
+	x<<"Cartas en mano: \n";
+	
     while(!pila.empty()){
         x<<&pila.top()<<"\n";
         pila.pop();
     }
-    x.str();
+	
+    return x.str();
 }
