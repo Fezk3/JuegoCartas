@@ -6,6 +6,7 @@
 jugador::jugador(string nombre) {
     this->nombre=nombre;
     monedas=500;
+	puntaje = 0;
     pila;
 }
 
@@ -45,6 +46,18 @@ int jugador::getApuesta(){
 int jugador::DoblarApuesta(){
 	
 	return getApuesta() * 2;
+	
+}
+
+void jugador::setPuntaje(int pts){
+	
+	this->puntaje = pts;
+	
+}
+
+int jugador::getPuntaje(){
+	
+	return puntaje;
 	
 }
 

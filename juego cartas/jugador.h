@@ -12,6 +12,8 @@ public:
 	int getMonedas();
 	void setApuesta(int);
 	int getApuesta();
+	void setPuntaje(int);
+	int getPuntaje();
 	int DoblarApuesta();
     string toString();
     
@@ -19,6 +21,7 @@ private:
     string nombre;
     int monedas;
 	int apuesta;
+	int puntaje;
     stack<carta> pila;
 };
 
