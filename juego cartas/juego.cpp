@@ -1,4 +1,5 @@
 #include "juego.h"
+#include <sstream>
 
 juego::juego() {
 	
@@ -10,8 +11,48 @@ void juego::agregarJugador(jugador* nuevo){
 
 void juego::reparteCarta(){
 	
+	for(int i=0;i<4;i++){
+		jugador actual = jugadores.at(i);
+		actual.recibeCarta(mazito.getMaz().front());
+		mazito.getMaz().pop();
+		
+	}
+}
+
+void juego::apostarMonedas(jugador actual){
+	
+}
+
+string juego::decidirGanadorRonda(){
+	
+	stringstream x;
+	for(int i=0;i<4;i++){
+		jugador actual = jugadores.at(i);
+		if(actual.getPuntaje()==21){
+			
+			int apuesta=actual.getApuesta()*2;
+			int monenasRest =actual.getMonedas();
+			actual.setMonedas(monenasRest + apuesta);
+			x<<actual.toString()<<"\n";
+		}
+		
+	}
+	return x.str();
+}
+
+jugador juego::decidirGanador(){
+	jugador ganador;
+	stringstream x;
 	for(int i=0;i<3;i++){
 		jugador actual = jugadores.at(i);
-		actual.recibeCarta(mazito.);
+		jugador siguiente = jugadores.at(i+1);
+		if(actual.getMonedas()<siguiente.getMonedas()){
+			
+			ganador=siguiente;
+		}else{
+			ganador=actual;
+		}
+		
 	}
+	return ganador;
 }

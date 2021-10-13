@@ -13,7 +13,6 @@ control::~control(){
 void control::menu(){
 	
 	string op;
-	bool subF = false, fin = false;
 	
 	do{
 		
@@ -35,44 +34,7 @@ void control::menu(){
 				
 			}else{
 				
-				do{
-					
-					switch(stoi(op)){
-						
-					case 1:
-						menu1ply();
-						subF = true;
-						system("pause");
-						system("cls");
-						break;
-					case 2:
-						//menu2ply();
-						subF = true;
-						system("pause");
-						system("cls");
-						break;
-					case 3:
-						//menu3play();
-						subF = true;
-						system("pause");
-						system("cls");
-						break;
-					case 4:
-						cout<<"Saliendo, gracias por jugar!\n";
-						subF = true;
-						fin = true;
-						system("pause");
-						system("cls");
-						break;
-					default:
-						
-						cout<<"Opcion invalida\n";
-						system("pause");
-						system("cls");
-						break;
-					}
-					
-				} while(!subF);
+				
 				
 			}
 			
@@ -84,17 +46,8 @@ void control::menu(){
 			
 		}
 		
-	} while(!fin);
-	
-	subF = false;
-	
-}
-
-void control::menu1ply(){
-	
-	cout<<"Menu 1 Jugador\n";
-	
-	
+		
+	} while(op != "4");
 	
 	
 }

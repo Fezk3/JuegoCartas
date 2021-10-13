@@ -5,6 +5,7 @@
 
 class jugador {
 public:
+	jugador();
     jugador(string nombre);
     virtual ~jugador();
 	void recibeCarta(carta);
