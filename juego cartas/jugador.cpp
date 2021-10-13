@@ -1,6 +1,9 @@
 #include <sstream>
 
 #include "jugador.h"
+
+// Si no puede apostar lo minimo o pierde todas las monedas, pierde y termina el juego
+
 jugador::jugador(){
 	nombre = "";
 	monedas = 0;

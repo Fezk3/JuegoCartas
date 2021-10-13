@@ -15,7 +15,6 @@ void juego::resetRonda(){
 	for(int i=0;i<jugadores.size()-1;i++){
 		
 		jugadores.at(i).setPuntaje(0);
-		jugadores.at(i).setApuesta(50);
 		
 		while(!jugadores.at(i).pila.empty()){
 			
