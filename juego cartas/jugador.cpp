@@ -71,7 +71,8 @@ string jugador::toString(){
 	
     stringstream x;
     x<<"El nombre es: "<<nombre<<"\n";
-    x<<"Cantidad de monedas: "<<monedas<<"\n";
+	x<<"Cantidad de monedas: "<<monedas<<"\n";
+	x<<"Puntos en esta ronda: "<<puntaje<<"\n";
 	x<<"Cartas en mano: \n";
 	
     while(!pila.empty()){
