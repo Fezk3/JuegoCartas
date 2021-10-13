@@ -31,7 +31,7 @@ bool juego::checkeaMonedas(){
 	
 	for(int i=0;i<jugadores.size();i++){
 		
-		if(jugadores.at(i).getMonedas() < 50){
+		if(jugadores.at(i).getMonedas()<50 || jugadores.at(i).getMonedas()==0){
 			
 			return false;
 			
