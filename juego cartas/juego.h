@@ -7,7 +7,7 @@ class juego {
 public:
 	juego();
 	void agregarJugador(jugador*);
-	void reparteCarta()
+	void reparteCarta();
 private:
 	vector<jugador> jugadores; 
 	mazo mazito;
