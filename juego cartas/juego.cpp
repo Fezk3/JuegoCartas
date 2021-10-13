@@ -21,7 +21,7 @@ void juego::resetRonda(){
 			jugadores.at(i).pila.pop();
 			
 		}
-		
+		jugadores.at(i).setApuesta(0);
 	}
 	
 }
@@ -63,14 +63,14 @@ string juego::decidirGanadorRonda(){
 	for(int i=0;i<jugadores.size();i++){
 		
 		if(jugadores.at(i).getPuntaje()==21){
-			
+			x<<"BLACKJACK!!\n";
 			int apuesta=jugadores.at(i).getApuesta()*6;
 			int monenasRest =jugadores.at(i).getMonedas();
 			jugadores.at(i).setMonedas(monenasRest + apuesta);
 			x<<jugadores.at(i).toString()<<"\n";
 		}
 		else if(jugadores.back().getPuntaje()<jugadores.at(i).getPuntaje()){
-			
+			x<<"GANADOR!!\n";
 			int apuesta=jugadores.at(i).getApuesta()*2;
 			int monenasRest =jugadores.at(i).getMonedas();
 			jugadores.at(i).setMonedas(monenasRest + apuesta);
@@ -78,7 +78,7 @@ string juego::decidirGanadorRonda(){
 			
 		}
 		else if(jugadores.back().getPuntaje()==jugadores.at(i).getPuntaje()){
-			
+			x<<"TABLAS!!\n";
 			int apuesta=jugadores.at(i).getApuesta();
 			int monenasRest =jugadores.at(i).getMonedas();
 			jugadores.at(i).setMonedas(monenasRest + apuesta);
@@ -120,20 +120,15 @@ string juego::mostrarJugadores(){
 
 string juego::decidirPerdedoresRonda(){
 	stringstream x;
+	x<<"JUAGDORES QUE PERDIERON!!\n";
 	for(int i=0;i<jugadores.size()-1;i++){
+		
 		if(jugadores.at(i).getPuntaje()<jugadores.back().getPuntaje() ||21 <jugadores.at(i).getPuntaje() ){
+			jugadores.at(i).setApuesta(0);
 			x<<jugadores.at(i).toString()<<"\n";
 		}
 	}
 	return x.str();
 }
 
-/*void juego::definirPuntaje(){
-	for(int i=0;i<jugadores.size();i++){
-		carta actual=jugadores.at(i).pila.top();
-		int puntaje= jugadores.at(i).getPuntaje();
-		
-		
 
-	}
-}*/
