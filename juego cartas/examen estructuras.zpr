@@ -35,7 +35,7 @@ cursor=128:1
 open=true
 [source]
 path=juego.cpp
-cursor=87:3
+cursor=120:33
 open=true
 [source]
 path=control.cpp
