@@ -391,15 +391,10 @@ void control::menuUniversal(int valor){
 			
 			jue.jugadores.at(i).recibeCarta(dar1);
 			
-			cout<<jue.jugadores.at(i).getNombre()<<" su puntaje actual es de: "<<jue.jugadores.at(i).getPuntaje()<<endl;
-			cout<<"El puntaje actual de la maquina es de: "<<jue.jugadores.back().getPuntaje()<<endl;
-			
 			//DOBLANDO APUESTA 
-			for(int i=0;i<valor;i++){
-				doblarApuesta(i);
-				system("pause");
-				system("cls");
-			}
+			doblarApuesta(i);
+			system("pause");
+			system("cls");
 			
 			cout<<jue.jugadores.at(i).getNombre()<<" su puntaje actual es de: "<<jue.jugadores.at(i).getPuntaje()<<endl;
 			cout<<"El puntaje actual de la maquina es de: "<<jue.jugadores.back().getPuntaje()<<endl;
