@@ -342,7 +342,7 @@ void control::menu1ply(){
 						if(op1 == 2) break;
 						
 						carta dar4 = jue.reparteCarta();
-						//try cat
+						
 						if(dar4.getValor() == "A"){
 							
 							bool fin3 = false;
