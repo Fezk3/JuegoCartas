@@ -19,6 +19,10 @@ public:
 	void menu2ply();
 	void menu3play();
 	
+	
+	void apostar(int );
+	void esAs(carta dar1, int);
+	void doblarApuesta(int i);
 };
 
 #endif
