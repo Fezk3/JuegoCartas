@@ -421,3 +421,14 @@ void control::menu1ply(){
 	} while(jue.checkeaMonedas());
 	
 }
+
+void control::menu2ply(){
+	
+	
+	
+
+	
+	
+}
+
+
