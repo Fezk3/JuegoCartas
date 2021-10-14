@@ -7,7 +7,7 @@ control::control(){
 control::~control(){
 	
 }
-
+ 
 void control::menu(){
 	
 	string op;
@@ -44,7 +44,7 @@ void control::menu(){
 						system("cls");
 						break;
 					case 2:
-						//menu2ply();
+						menu2ply();
 						subF = true;
 						system("pause");
 						system("cls");
@@ -841,4 +841,5 @@ void control::continuar(bool finale){
 		}
 		
 	} while(!yu);
+	jue.mazito.vaciarMazo();
 }
