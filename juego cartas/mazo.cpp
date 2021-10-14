@@ -120,6 +120,7 @@ string mazo::mostrar() {
     return x.str();
 }
 
+
 void mazo::vaciarMazo(){
 	
 	while(!maz.empty()){
@@ -129,3 +130,4 @@ void mazo::vaciarMazo(){
 	}
 	
 }
+

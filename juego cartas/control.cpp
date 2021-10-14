@@ -224,6 +224,7 @@ void control::menu1ply(){
 		
 		
 		// MOSTRANDO JUGADORES LUEGO DE REPARTIR CARTA 1
+
 		//cout<<jue.mostrarJugadores()<<"\n";
 		cout<<"Su puntaje actual es de: "<<jue.jugadores.at(0).getPuntaje()<<endl;
 		cout<<"El puntaje actual de la maquina es de: "<<jue.jugadores.at(1).getPuntaje()<<endl;
@@ -231,6 +232,7 @@ void control::menu1ply(){
 		system("cls");
 		
 		if(jue.jugadores.at(0).getMonedas() >= apuesta*2){
+
 			
 			do{
 				
