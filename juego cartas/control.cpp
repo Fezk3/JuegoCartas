@@ -107,13 +107,12 @@ void control::menu1ply(){
 	system("pause");
 	system("cls");
 	
-	jue.jugadores.at(1).setMonedas(999);
-	jue.jugadores.at(1).setApuesta(50);
 	do{
 		
 		jue.mazito.llenarMazo();
 		jue.mazito.revolver();
-		
+		jue.jugadores.at(1).setMonedas(999);
+		jue.jugadores.at(1).setApuesta(50);
 		
 		//  seleccion de apuesta
 		do{
