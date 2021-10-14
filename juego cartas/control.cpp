@@ -192,6 +192,8 @@ void control::doblarApuesta(int i){
 					
 					cout<<"Apuesta doblada a: "<<jue.jugadores.at(i).getApuesta()*2<<"\n";
 					jue.jugadores.at(i).DoblarApuesta();
+					
+					jue.jugadores.at(i).recibeCarta(jue.reparteCarta());
 					apu = 2;
 					
 				}
