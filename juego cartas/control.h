@@ -21,7 +21,7 @@ public:
 	void esAs(carta , int);
 	void doblarApuesta(int );
 	void pidiendoSegundaCarta(int );
-	void continuar(bool );
+	bool continuar(bool );
 };
 
 #endif

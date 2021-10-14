@@ -277,7 +277,7 @@ void control::pidiendoSegundaCarta(int i){
 	}
 }
 
-void control::continuar(bool finale){
+bool control::continuar(bool finale){
 	bool yu = false;
 	int op;
 	do{
@@ -299,16 +299,16 @@ void control::continuar(bool finale){
 				
 				if(op == 2){
 					
-					finale = false;
 					jue.jugadores.clear();
+					return false;
 				}
 				if(op == 1 && jue.jugadores.at(0).getMonedas() < 50){
 					
-					finale = false;
 					jue.jugadores.clear();
+					return false;
 					
 				}
-				yu = true;
+				return true;
 				
 			}
 			
@@ -320,33 +320,40 @@ void control::continuar(bool finale){
 		}
 		
 	} while(!yu);
-	jue.mazito.vaciarMazo();
+
 }
 
 void control::menuUniversal(int valor){
 	
-	bool finale = true;
+	bool finale = true, fin;
 	string nombre;
+	jue.mazito.vaciarMazo();
 	jue.mazito.llenarMazo();
 	jue.mazito.revolver();
+	//ASIGNANDO JUGADORES Y PRIMERA APUESTA
+	for(int i=0;i<valor;i++){
+		
+		cout<<"Digite su nombre: \n";
+		cin>>nombre;
+		
+		jue.agregarJugador(new jugador(nombre));
+		cout<<"\n\n";
+		system("pause");
+		system("cls");
+		//apostar(i);
+	}
+	
+	jue.agregarJugador(new jugador("Maquina"));
+	jue.jugadores.back().setMonedas(999);
+	jue.jugadores.back().setApuesta(50);
+	
 	do{
-		//ASIGNANDO JUGADORES Y PRIMERA APUESTA
+		
 		for(int i=0;i<valor;i++){
-			cout<<"Digite su nombre: \n";
-			cin>>nombre;
-			
-			jue.agregarJugador(new jugador(nombre));
-			cout<<"\n\n";
-			system("pause");
-			system("cls");
 			apostar(i);
 		}
 		
-		jue.agregarJugador(new jugador("Maquina"));
-		jue.jugadores.back().setMonedas(999);
-		jue.jugadores.back().setApuesta(50);
 		//---------------------------------------------------------------
-		
 		
 		//REPARTIENDO CARTAS
 		for(int i=0;i<valor;i++){
@@ -427,8 +434,10 @@ void control::menuUniversal(int valor){
 		system("cls");
 		jue.resetRonda();
 		
-		
-		continuar(finale);
+		fin = continuar(finale);
+		jue.mazito.vaciarMazo();
+		jue.mazito.llenarMazo();
+		jue.mazito.revolver();
 		//------------------------------------------------------------
-	}while(jue.checkeaMonedas() && !finale);
+	}while(jue.checkeaMonedas() && fin);
 }
