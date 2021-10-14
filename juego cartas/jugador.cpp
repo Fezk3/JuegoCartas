@@ -90,8 +90,8 @@ string jugador::toString(){
         pila.pop();
     }
     x<<"Esta apostando: "<<apuesta<<"\n";
-	x<<"el puntaje de las cartas es: "<<puntaje<<"\n"; 
-	x<<"\n";
+	x<<"el puntaje de las cartas es: "<<puntaje<<"\n\n\n"; 
+	
     return x.str();
 }
 

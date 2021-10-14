@@ -504,58 +504,112 @@ void control::menu2ply(){
 
 void control::menu3play(){
 	
-	
+	bool finale = true;
 	string nombre;
-	
-	for(int i=0;i<3;i++){
-		cout<<"Digite su nombre: \n";
-		cin>>nombre;
+	jue.mazito.llenarMazo();
+	jue.mazito.revolver();
+	do{
+		//ASIGNANDO JUGADORES Y PRIMERA APUESTA
+		for(int i=0;i<3;i++){
+			cout<<"Digite su nombre: \n";
+			cin>>nombre;
+			
+			jue.agregarJugador(new jugador(nombre));
+			cout<<"\n\n";
+			system("pause");
+			system("cls");
+			apostar(i);
+		}
 		
-		jue.agregarJugador(new jugador(nombre));
-		cout<<"\n\n";
+		jue.agregarJugador(new jugador("Maquina"));
+		jue.jugadores.back().setMonedas(999);
+		jue.jugadores.back().setApuesta(50);
+		//---------------------------------------------------------------
+		
+		
+		//REPARTIENDO CARTAS
+		for(int i=0;i<3;i++){
+			cout<<"Repartiendo Cartas\n";
+			cout<<"Carta para "<<jue.jugadores.at(i).getNombre()<<"\n";
+			
+			carta dar1 = jue.reparteCarta();
+			
+			//verifica si es un as o no
+			esAs(dar1,i);
+			
+			jue.jugadores.at(i).recibeCarta(dar1);
+			system("pause");
+			system("cls");
+			
+		}
+		
+		cout<<"Carta para la maquina\n";
+		carta dar2 = jue.reparteCarta();
+		
+		if(dar2.getValor() == "A"){
+			
+			jue.jugadores.back().setPuntaje(jue.jugadores.back().getPuntaje() + 1);
+			
+		}
+		jue.jugadores.back().recibeCarta(dar2);
 		system("pause");
 		system("cls");
-		apostar(i);
-	}
-	
-	jue.agregarJugador(new jugador("Maquina"));
-	jue.jugadores.back().setMonedas(999);
-	jue.jugadores.back().setApuesta(50);
-	
-	//dando cartas
-	for(int i=0;i<3;i++){
-		cout<<"Repartiendo Cartas\n";
-		cout<<"Carta para "<<jue.jugadores.at(i).getNombre()<<"\n";
+		//--------------------------------------------------------------
 		
-		carta dar1 = jue.reparteCarta();
 		
-		//verifica si es un as o no
-		esAs(dar1,i);
+		//DOBLANDO APUESTA 
+		for(int i=0;i<3;i++){
+			doblarApuesta(i);
+		}
+		//-------------------------------------------------------------
 		
-		jue.jugadores.at(i).recibeCarta(dar1);
+		// SEGUNDA RONDA DE CARTAS
+		for(int i=0;i<3;i++){
+			cout<<"Repartiendo Cartas\n";
+			cout<<"Carta para "<<jue.jugadores.at(i).getNombre()<<"\n";
+			
+			carta dar1 = jue.reparteCarta();
+			
+			//verifica si es un as o no
+			esAs(dar1,i);
+			
+			jue.jugadores.at(i).recibeCarta(dar1);
+			
+			system("pause");
+			system("cls");
+			cout<<"Su puntaje actual es de: "<<jue.jugadores.at(i).getPuntaje()<<endl;
+			cout<<"El puntaje actual de la maquina es de: "<<jue.jugadores.back().getPuntaje()<<endl;
+			system("pause");
+			system("cls");
+			pidiendoSegundaCarta(i);
+		}
+		
+		cout<<"Carta para la maquina\n";
+		carta dar5 = jue.reparteCarta();
+		if(dar5.getValor() == "A"){
+			
+			jue.jugadores.back().setPuntaje(jue.jugadores.back().getPuntaje() + 1);
+			
+		}
+		jue.jugadores.back().recibeCarta(dar5);
+		//------------------------------------------------------------
+		
+		//DECIDIENDO GANADOR, MOSTRANDO JUGADORES Y PREGUNTANDO CONTINUIDAD
 		system("pause");
 		system("cls");
+		cout<<jue.decidirGanadorRonda();
+		system("pause");
+		system("cls");
+		cout<<"Jugadores de la partida en esta ronda: \n\n";
+		cout<<jue.mostrarJugadores();
+		system("pause");
+		system("cls");
+		jue.resetRonda();
 		
-	}
-	cout<<"Carta para la maquina\n";
-	carta dar2 = jue.reparteCarta();
-	if(dar2.getValor() == "A"){
 		
-		jue.jugadores.back().setPuntaje(jue.jugadores.back().getPuntaje() + 1);
-		
-	}
-	jue.jugadores.back().recibeCarta(dar2);
-	system("pause");
-	system("cls");
-	
-	
-	// MOSTRANDO JUGADORES LUEGO DE REPARTIR CARTA 1
-	cout<<jue.mostrarJugadores()<<"\n";
-	
-	for(int i=0;i<3;i++){
-		doblarApuesta(i);
-	}
-	
+		continuar(finale);
+		//------------------------------------------------------------
+	}while(jue.checkeaMonedas() || !finale);
 }
 
 void control::apostar(int i){
@@ -563,6 +617,7 @@ void control::apostar(int i){
 	bool sale=false;
 	do{
 		int apuesta;
+		cout<<"\n\n"<<jue.jugadores.at(i).getNombre()<<"\n";
 		cout<<"Usted dispone de: "<<jue.jugadores.at(i).getMonedas()<<"\n";
 		cout<<"Digite el numero de monedas que quiere apostar en esta ronda: \n";
 		cin>>apuesta;
@@ -643,9 +698,11 @@ void control::esAs(carta dar1, int i){
 
 void control::doblarApuesta(int i){
 	if( jue.jugadores.at(i).getMonedas()> jue.jugadores.at(i).getApuesta()*2){
-		
+		int apu;
 		do{
-			
+			system("pause");
+			system("cls");
+			cout<<jue.jugadores.at(i).getNombre()<<"\n";
 			cout<<"Desea doblar su apuesta?\n";
 			cout<<"1. SI	2. NO\n";
 			cin>>apu;
@@ -676,4 +733,112 @@ void control::doblarApuesta(int i){
 		} while(apu != 2);
 		
 	}
+}
+
+void control::pidiendoSegundaCarta(int i){
+	if(jue.jugadores.at(i).getPuntaje() < 21){
+		int op1;
+		do{
+			
+			cout<<"Desea pedir otra carta?\n";
+			cout<<"1. SI	2. NO\n";
+			cin>>op1;	
+			system("pause");
+			system("cls");
+			
+			try{
+				
+				if(op1 != 1 && op1 != 2){
+					
+					throw op1;
+					
+				}else{
+					
+					if(op1 == 2) break;
+					
+					carta dar4 = jue.reparteCarta();
+					
+					esAs(dar4,i);
+					
+					jue.jugadores.at(i).recibeCarta(dar4);
+					
+					cout<<"Su puntaje actual es de: "<<jue.jugadores.at(i).getPuntaje()<<endl;
+					
+					if(jue.jugadores.at(i).getPuntaje()==21){
+						
+						op1=2;
+						system("pause");
+						system("cls");
+						
+					}
+					
+					if(jue.jugadores.at(i).getPuntaje()>21){
+						
+						cout<<"\n\nExidio el puntaje posible\n\n";
+						op1=2;
+						system("pause");
+						system("cls");
+						
+					}
+					
+					
+				}
+				
+				
+			}catch(int op1){
+				
+				cout<<"Opcion invalida, intente una de las sugeridas\n";
+				system("pause");
+				system("cls");
+				
+			}
+			
+		} while(op1!=2);
+		
+	}
+}
+
+void control::continuar(bool finale){
+	bool yu = false;
+	int op;
+	do{
+		
+		
+		try{
+			
+			cout<<"Desea continuar jugando?\n";
+			cout<<"1. SI		2. NO\n";
+			cin>>op;
+			system("pause");
+			system("cls");
+			
+			if(op!=1 && op!=2){
+				
+				throw op;
+				
+			}else{
+				
+				if(op == 2){
+					
+					finale = false;
+					jue.jugadores.clear();
+				}
+				if(op == 1 && jue.jugadores.at(0).getMonedas() < 50){
+					
+					finale = false;
+					jue.jugadores.clear();
+					
+				}
+				yu = true;
+				
+			}
+			
+		}catch(int op){
+			
+			cout<<"Opcion invalida\n";
+			system("pause");
+			system("cls");
+		}
+		
+	} while(!yu);
 }

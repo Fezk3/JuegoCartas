@@ -21,8 +21,10 @@ public:
 	
 	
 	void apostar(int );
-	void esAs(carta dar1, int);
-	void doblarApuesta(int i);
+	void esAs(carta , int);
+	void doblarApuesta(int );
+	void pidiendoSegundaCarta(int );
+	void continuar(bool );
 };
 
 #endif

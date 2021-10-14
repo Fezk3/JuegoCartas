@@ -69,7 +69,6 @@ string juego::decidirGanadorRonda(){
 			jugadores.at(i).setMonedas(monenasRest + apuesta);
 			x<<"Jugador:	"<<jugadores.at(i).getNombre()<<"\n";
 			x<<"Puntaje:	"<<jugadores.at(i).getPuntaje()<<"\n\n";
-			//x<<jugadores.at(i).toString()<<"\n";
 		}
 		else if(jugadores.back().getPuntaje()<jugadores.at(i).getPuntaje() && jugadores.at(i).getPuntaje()<21){
 			x<<"GANADOR!!\n";
@@ -78,7 +77,6 @@ string juego::decidirGanadorRonda(){
 			jugadores.at(i).setMonedas(monenasRest + apuesta);
 			x<<"Jugador:	"<<jugadores.at(i).getNombre()<<"\n";
 			x<<"Puntaje:	"<<jugadores.at(i).getPuntaje()<<"\n\n";
-			//x<<jugadores.at(i).toString()<<"\n";
 			
 		}
 		else if(jugadores.back().getPuntaje()==jugadores.at(i).getPuntaje()){
@@ -88,7 +86,6 @@ string juego::decidirGanadorRonda(){
 			jugadores.at(i).setMonedas(monenasRest + apuesta);
 			x<<"Jugador:	"<<jugadores.at(i).getNombre()<<"\n";
 			x<<"Puntaje:	"<<jugadores.at(i).getPuntaje()<<"\n\n";
-			//x<<jugadores.at(i).toString()<<"\n";
 			
 		}
 	}
