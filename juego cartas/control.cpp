@@ -431,4 +431,11 @@ void control::menu2ply(){
 	
 }
 
-
+void control::menu3play(){
+	
+	
+	
+	
+	
+	
+}
