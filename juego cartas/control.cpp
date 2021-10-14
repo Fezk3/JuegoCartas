@@ -92,9 +92,9 @@ void control::menu1ply(){
 	// pido nombre al jugador -> vector
 	// maquina -> vector
 	string nombre;
-	int apuesta = 50, apu, op1, as1, as2, as3;
-	bool fin1 = false;
-	
+	int apuesta = 50, apu, op1, as1, as2, as3, op;
+	bool fin1 = false, finale = true;
+
 	cout<<"Digite su nombre: \n";
 	cin>>nombre;
 	
@@ -114,6 +114,7 @@ void control::menu1ply(){
 		jue.jugadores.at(1).setMonedas(999);
 		jue.jugadores.at(1).setApuesta(50);
 		
+		
 		//  seleccion de apuesta
 		do{
 			
@@ -131,9 +132,17 @@ void control::menu1ply(){
 					
 				}else{
 					
-					jue.jugadores.at(0).setApuesta(apuesta);
-					jue.jugadores.at(0).setMonedas(jue.jugadores.at(0).getMonedas() - apuesta);
-					fin1 = true;
+					if(apuesta < 50 || apuesta > jue.jugadores.at(0).getMonedas()){
+						
+						throw apuesta;
+						
+					}else{
+						
+						jue.jugadores.at(0).setApuesta(apuesta);
+						jue.jugadores.at(0).setMonedas(jue.jugadores.at(0).getMonedas() - apuesta);
+						fin1 = true;
+						
+					}
 					
 				}
 				
@@ -215,9 +224,13 @@ void control::menu1ply(){
 		
 		
 		// MOSTRANDO JUGADORES LUEGO DE REPARTIR CARTA 1
-		cout<<jue.mostrarJugadores()<<"\n";
+		//cout<<jue.mostrarJugadores()<<"\n";
+		cout<<"Su puntaje actual es de: "<<jue.jugadores.at(0).getPuntaje()<<endl;
+		cout<<"El puntaje actual de la maquina es de: "<<jue.jugadores.at(1).getPuntaje()<<endl;
+		system("pause");
+		system("cls");
 		
-		if(jue.jugadores.at(0).getMonedas() > apuesta*2){
+		if(jue.jugadores.at(0).getMonedas() >= apuesta*2){
 			
 			do{
 				
@@ -314,15 +327,19 @@ void control::menu1ply(){
 				
 				cout<<"Desea pedir otra carta?\n";
 				cout<<"1. SI	2. NO\n";
-				cin>>op1;				
+				cin>>op1;	
+				system("pause");
+				system("cls");
 				
 				try{
 					
-					if(op1 != 1 && apu != 2){
+					if(op1 != 1 && op1 != 2){
 						
-						throw apu;
+						throw op1;
 						
-					}else if(op1 == 1){
+					}else{
+						
+						if(op1 == 2) break;
 						
 						carta dar4 = jue.reparteCarta();
 						//try cat
@@ -372,10 +389,18 @@ void control::menu1ply(){
 						
 						cout<<"Su puntaje actual es de: "<<jue.jugadores.at(0).getPuntaje()<<endl;
 						
+						if(jue.jugadores.at(0).getPuntaje()==21){
+							
+							op1=2;
+							system("pause");
+							system("cls");
+							
+						}
+						
 						if(jue.jugadores.at(0).getPuntaje()>21){
 							
 							cout<<"\n\nExidio el puntaje posible\n\n";
-							op1 =2;
+							op1=2;
 							system("pause");
 							system("cls");
 							
@@ -418,7 +443,51 @@ void control::menu1ply(){
 		system("cls");
 		jue.resetRonda();
 		
-	} while(jue.checkeaMonedas());
+		bool yu = false;
+		do{
+			
+			
+			try{
+				
+				cout<<"Desea continuar jugando?\n";
+				cout<<"1. SI		2. NO\n";
+				cin>>op;
+				system("pause");
+				system("cls");
+				
+				if(op!=1 && op!=2){
+					
+					throw op;
+					
+				}else{
+					
+					if(op == 2){
+						
+						finale = false;
+						jue.jugadores.clear();
+					}
+					if(op == 1 && jue.jugadores.at(0).getMonedas() < 50){
+						
+						finale = false;
+						jue.jugadores.clear();
+						
+					}
+					yu = true;
+					
+				}
+				
+			}catch(int op){
+				
+				cout<<"Opcion invalida\n";
+				system("pause");
+				system("cls");
+			}
+			
+		} while(!yu);
+		
+		jue.mazito.vaciarMazo();
+		
+	} while(jue.checkeaMonedas() && finale);
 	
 }
 

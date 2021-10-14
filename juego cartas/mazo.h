@@ -14,6 +14,7 @@ public:
 	void revolver();
 	//atributo
     queue<carta> maz;
+	void vaciarMazo();
 };
 
 #endif /* MAZO_H */

@@ -58,9 +58,10 @@ int jugador::getApuesta(){
 	
 }
 
-int jugador::DoblarApuesta(){
+void jugador::DoblarApuesta(){
 	
-	return getApuesta() * 2;
+	monedas -= apuesta;
+	apuesta = apuesta * 2;
 	
 }
 

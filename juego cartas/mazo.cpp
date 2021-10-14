@@ -119,3 +119,13 @@ string mazo::mostrar() {
     }
     return x.str();
 }
+
+void mazo::vaciarMazo(){
+	
+	while(!maz.empty()){
+		
+		maz.pop();
+		
+	}
+	
+}

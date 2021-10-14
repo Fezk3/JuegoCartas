@@ -31,7 +31,7 @@ bool juego::checkeaMonedas(){
 	
 	for(int i=0;i<jugadores.size();i++){
 		
-		if(jugadores.at(i).getMonedas()<50 || jugadores.at(i).getMonedas()==0){
+		if(jugadores.at(i).getMonedas()<50){
 			
 			return false;
 			
@@ -67,14 +67,18 @@ string juego::decidirGanadorRonda(){
 			int apuesta=jugadores.at(i).getApuesta()*6;
 			int monenasRest =jugadores.at(i).getMonedas();
 			jugadores.at(i).setMonedas(monenasRest + apuesta);
-			x<<jugadores.at(i).toString()<<"\n";
+			x<<jugadores.at(i).getNombre()<<"\n";
+			x<<jugadores.at(i).getPuntaje()<<"\n\n";
+			//x<<jugadores.at(i).toString()<<"\n";
 		}
 		else if(jugadores.back().getPuntaje()<jugadores.at(i).getPuntaje() && jugadores.at(i).getPuntaje()<21){
 			x<<"GANADOR!!\n";
 			int apuesta=jugadores.at(i).getApuesta()*2;
 			int monenasRest =jugadores.at(i).getMonedas();
 			jugadores.at(i).setMonedas(monenasRest + apuesta);
-			x<<jugadores.at(i).toString()<<"\n";
+			x<<jugadores.at(i).getNombre()<<"\n";
+			x<<jugadores.at(i).getPuntaje()<<"\n\n";
+			//x<<jugadores.at(i).toString()<<"\n";
 			
 		}
 		else if(jugadores.back().getPuntaje()==jugadores.at(i).getPuntaje()){
@@ -82,7 +86,9 @@ string juego::decidirGanadorRonda(){
 			int apuesta=jugadores.at(i).getApuesta();
 			int monenasRest =jugadores.at(i).getMonedas();
 			jugadores.at(i).setMonedas(monenasRest + apuesta);
-			x<<jugadores.at(i).toString()<<"\n";
+			x<<jugadores.at(i).getNombre()<<"\n";
+			x<<jugadores.at(i).getPuntaje()<<"\n\n";
+			//x<<jugadores.at(i).toString()<<"\n";
 			
 		}
 	}

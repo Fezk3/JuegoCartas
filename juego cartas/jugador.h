@@ -15,7 +15,7 @@ public:
 	int getApuesta();
 	void setPuntaje(int);
 	int getPuntaje();
-	int DoblarApuesta();
+	void DoblarApuesta();
     string toString();
 	stack<carta> pila;
 	void definirPuntaje(carta);
