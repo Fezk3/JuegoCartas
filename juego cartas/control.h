@@ -6,9 +6,11 @@ class control{
 	
 private:
 	
-	juego *jue;
+	//juego jue;
 	
 public:
+	
+	juego jue;
 	
 	control();
 	~control();

@@ -19,10 +19,19 @@ jugador::jugador(string nombre) {
 jugador::~jugador() {
 }
 
-void jugador::recibeCarta(carta nueva){
-	definirPuntaje(nueva);
-	pila.push(nueva);
+string jugador::getNombre(){
 	
+	return nombre;
+	
+}
+
+void jugador::recibeCarta(carta nueva){
+	if(nueva.getValor()!="A"){
+		definirPuntaje(nueva);
+		pila.push(nueva);
+	}else{
+		pila.push(nueva);
+	}
 }
 
 void jugador::setMonedas(int mone){
@@ -73,49 +82,50 @@ string jugador::toString(){
     x<<"El nombre es: "<<nombre<<"\n";
 	x<<"Cantidad de monedas: "<<monedas<<"\n";
 	x<<"Cartas en mano: \n";
-	
     while(!pila.empty()){
-        x<<&pila.top()<<"\n";
+        carta aux = pila.top();
+		x<<aux.toString();
         pila.pop();
     }
     x<<"Esta apostando: "<<apuesta<<"\n";
 	x<<"el puntaje de las cartas es: "<<puntaje<<"\n"; 
-	
+	x<<"\n";
     return x.str();
 }
 
 void jugador::definirPuntaje(carta actual){
 	if(actual.getValor()=="J" || actual.getValor()=="Q" || actual.getValor()=="K"){
 		puntaje+=10;
-	}
-	switch(stoi(actual.getValor())){
-	case 2:
-		puntaje+=2;
-		break;
-	case 3:
-		puntaje+=3;
-		break;
-	case 4:
-		puntaje+=4;
-		break;
-	case 5:
-		puntaje+=5;
-		break;
-	case 6:
-		puntaje+=6;
-		break;
-	case 7:
-		puntaje+=7;
-		break;
-	case 8:
-		puntaje+=8;
-		break;
-	case 9:
-		puntaje+=9;
-		break;
-	case 10:
-		puntaje+=10;
-		break;
-	
+	}else{
+		switch(stoi(actual.getValor())){
+		case 2:
+			puntaje+=2;
+			break;
+		case 3:
+			puntaje+=3;
+			break;
+		case 4:
+			puntaje+=4;
+			break;
+		case 5:
+			puntaje+=5;
+			break;
+		case 6:
+			puntaje+=6;
+			break;
+		case 7:
+			puntaje+=7;
+			break;
+		case 8:
+			puntaje+=8;
+			break;
+		case 9:
+			puntaje+=9;
+			break;
+		case 10:
+			puntaje+=10;
+			break;
+		
+		}
 	}
 }

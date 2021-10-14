@@ -3,6 +3,7 @@
 #include "carta.h"
 #include <queue>
 #include <vector>
+#include <time.h>
 
 class mazo {
 public:
@@ -11,8 +12,7 @@ public:
     void llenarMazo();
     string mostrar();
 	void revolver();
-	queue<carta> getMaz();
-private:
+	//atributo
     queue<carta> maz;
 };
 

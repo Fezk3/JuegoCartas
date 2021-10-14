@@ -19,6 +19,7 @@ public:
     string toString();
 	stack<carta> pila;
 	void definirPuntaje(carta);
+	string getNombre();
     
 private:
     string nombre;

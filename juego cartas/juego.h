@@ -7,16 +7,15 @@ class juego {
 public:
 	juego();
 	void agregarJugador(jugador*);
-	void reparteCarta();
+	carta reparteCarta();
 	jugador decidirGanador();
 	string decidirGanadorRonda();
 	string mostrarJugadores();
 	void resetRonda();
 	bool checkeaMonedas();
-	string decidirPerdedoresRonda();
 	void definirPuntaje();
 	
-private:
+	//atributos
 	vector<jugador> jugadores; 
 	mazo mazito;
 };

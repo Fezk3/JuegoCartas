@@ -10,7 +10,7 @@ juego::juego() {
 
 void juego::resetRonda(){
 	
-	jugadores.at(0).setMonedas(999);
+	jugadores.at(1).setMonedas(999);
 	
 	for(int i=0;i<jugadores.size();i++){
 		
@@ -47,20 +47,20 @@ void juego::agregarJugador(jugador* nuevo){
 	jugadores.push_back(*nuevo);
 }
 
-void juego::reparteCarta(){
+carta juego::reparteCarta(){
 	
-	for(int i=0;i<jugadores.size();i++){
-		
-		jugadores.at(i).recibeCarta(mazito.getMaz().front());
-		mazito.getMaz().pop();
-		
-	}
+	carta dar =  mazito.maz.front();
+	cout<<"Su carta es: "<<dar.toString()<<"\n";
+	mazito.maz.pop();
+	
+	return dar;
+	
 }
 
 string juego::decidirGanadorRonda(){
 	
 	stringstream x;
-	for(int i=0;i<jugadores.size();i++){
+	for(int i=0;i<jugadores.size()-1;i++){
 		
 		if(jugadores.at(i).getPuntaje()==21){
 			x<<"BLACKJACK!!\n";
@@ -69,7 +69,7 @@ string juego::decidirGanadorRonda(){
 			jugadores.at(i).setMonedas(monenasRest + apuesta);
 			x<<jugadores.at(i).toString()<<"\n";
 		}
-		else if(jugadores.back().getPuntaje()<jugadores.at(i).getPuntaje()){
+		else if(jugadores.back().getPuntaje()<jugadores.at(i).getPuntaje() && jugadores.at(i).getPuntaje()<21){
 			x<<"GANADOR!!\n";
 			int apuesta=jugadores.at(i).getApuesta()*2;
 			int monenasRest =jugadores.at(i).getMonedas();
@@ -86,7 +86,7 @@ string juego::decidirGanadorRonda(){
 			
 		}
 	}
-	resetRonda();
+
 	return x.str();
 }
 
@@ -117,18 +117,3 @@ string juego::mostrarJugadores(){
 	}
 	return x.str();
 }
-
-string juego::decidirPerdedoresRonda(){
-	stringstream x;
-	x<<"JUAGDORES QUE PERDIERON!!\n";
-	for(int i=0;i<jugadores.size()-1;i++){
-		
-		if(jugadores.at(i).getPuntaje()<jugadores.back().getPuntaje() ||21 <jugadores.at(i).getPuntaje() ){
-			jugadores.at(i).setApuesta(0);
-			x<<jugadores.at(i).toString()<<"\n";
-		}
-	}
-	return x.str();
-}
-
-
