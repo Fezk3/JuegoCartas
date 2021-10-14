@@ -64,7 +64,7 @@ string juego::decidirGanadorRonda(){
 		
 		if(jugadores.at(i).getPuntaje()==21){
 			x<<"BLACKJACK!!\n";
-			int apuesta=jugadores.at(i).getApuesta()*6;
+			int apuesta=jugadores.at(i).getApuesta()*3;
 			int monenasRest =jugadores.at(i).getMonedas();
 			jugadores.at(i).setMonedas(monenasRest + apuesta);
 			x<<"Jugador:	"<<jugadores.at(i).getNombre()<<"\n";
