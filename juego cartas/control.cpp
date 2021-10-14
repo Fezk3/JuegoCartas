@@ -38,19 +38,19 @@ void control::menu(){
 					switch(stoi(op)){
 						
 					case 1:
-						menu1ply();
+						menuUniversal(1);
 						subF = true;
 						system("pause");
 						system("cls");
 						break;
 					case 2:
-						menu2ply();
+						menuUniversal(2);
 						subF = true;
 						system("pause");
 						system("cls");
 						break;
 					case 3:
-						menu3play();
+						menuUniversal(3);
 						subF = true;
 						system("pause");
 						system("cls");
@@ -495,11 +495,111 @@ void control::menu1ply(){
 
 void control::menu2ply(){
 	
-	
-	
-
-	
-	
+	bool finale = true;
+	string nombre;
+	jue.mazito.llenarMazo();
+	jue.mazito.revolver();
+	do{
+		//ASIGNANDO JUGADORES Y PRIMERA APUESTA
+		for(int i=0;i<2;i++){
+			cout<<"Digite su nombre: \n";
+			cin>>nombre;
+			
+			jue.agregarJugador(new jugador(nombre));
+			cout<<"\n\n";
+			system("pause");
+			system("cls");
+			apostar(i);
+		}
+		
+		jue.agregarJugador(new jugador("Maquina"));
+		jue.jugadores.back().setMonedas(999);
+		jue.jugadores.back().setApuesta(50);
+		//---------------------------------------------------------------
+		
+		
+		//REPARTIENDO CARTAS
+		for(int i=0;i<2;i++){
+			cout<<"Repartiendo Cartas\n";
+			cout<<"Carta para "<<jue.jugadores.at(i).getNombre()<<"\n";
+			
+			carta dar1 = jue.reparteCarta();
+			
+			//verifica si es un as o no
+			esAs(dar1,i);
+			
+			jue.jugadores.at(i).recibeCarta(dar1);
+			system("pause");
+			system("cls");
+			
+		}
+		
+		cout<<"Carta para la maquina\n";
+		carta dar2 = jue.reparteCarta();
+		
+		if(dar2.getValor() == "A"){
+			
+			jue.jugadores.back().setPuntaje(jue.jugadores.back().getPuntaje() + 1);
+			
+		}
+		jue.jugadores.back().recibeCarta(dar2);
+		
+		//--------------------------------------------------------------
+		
+		
+		//DOBLANDO APUESTA 
+		for(int i=0;i<2;i++){
+			doblarApuesta(i);
+		}
+		//-------------------------------------------------------------
+		
+		// SEGUNDA RONDA DE CARTAS
+		for(int i=0;i<2;i++){
+			cout<<"Repartiendo Cartas\n";
+			cout<<"Carta para "<<jue.jugadores.at(i).getNombre()<<"\n";
+			
+			carta dar1 = jue.reparteCarta();
+			
+			//verifica si es un as o no
+			esAs(dar1,i);
+			
+			jue.jugadores.at(i).recibeCarta(dar1);
+			
+			system("pause");
+			system("cls");
+			cout<<"Su puntaje actual es de: "<<jue.jugadores.at(i).getPuntaje()<<endl;
+			cout<<"El puntaje actual de la maquina es de: "<<jue.jugadores.back().getPuntaje()<<endl;
+			system("pause");
+			system("cls");
+			pidiendoSegundaCarta(i);
+		}
+		
+		cout<<"Carta para la maquina\n";
+		carta dar5 = jue.reparteCarta();
+		if(dar5.getValor() == "A"){
+			
+			jue.jugadores.back().setPuntaje(jue.jugadores.back().getPuntaje() + 1);
+			
+		}
+		jue.jugadores.back().recibeCarta(dar5);
+		//------------------------------------------------------------
+		
+		//DECIDIENDO GANADOR, MOSTRANDO JUGADORES Y PREGUNTANDO CONTINUIDAD
+		system("pause");
+		system("cls");
+		cout<<jue.decidirGanadorRonda();
+		system("pause");
+		system("cls");
+		cout<<"Jugadores de la partida en esta ronda: \n\n";
+		cout<<jue.mostrarJugadores();
+		system("pause");
+		system("cls");
+		jue.resetRonda();
+		
+		
+		continuar(finale);
+		//------------------------------------------------------------
+	}while(jue.checkeaMonedas() || !finale);
 }
 
 void control::menu3play(){
@@ -552,8 +652,6 @@ void control::menu3play(){
 			
 		}
 		jue.jugadores.back().recibeCarta(dar2);
-		system("pause");
-		system("cls");
 		//--------------------------------------------------------------
 		
 		
@@ -617,7 +715,7 @@ void control::apostar(int i){
 	bool sale=false;
 	do{
 		int apuesta;
-		cout<<"\n\n"<<jue.jugadores.at(i).getNombre()<<"\n";
+		cout<<"\tjugador:	"<<jue.jugadores.at(i).getNombre()<<"\n";
 		cout<<"Usted dispone de: "<<jue.jugadores.at(i).getMonedas()<<"\n";
 		cout<<"Digite el numero de monedas que quiere apostar en esta ronda: \n";
 		cin>>apuesta;
@@ -733,6 +831,7 @@ void control::doblarApuesta(int i){
 		} while(apu != 2);
 		
 	}
+
 }
 
 void control::pidiendoSegundaCarta(int i){
@@ -762,7 +861,7 @@ void control::pidiendoSegundaCarta(int i){
 					
 					jue.jugadores.at(i).recibeCarta(dar4);
 					
-					cout<<"Su puntaje actual es de: "<<jue.jugadores.at(i).getPuntaje()<<endl;
+					cout<<jue.jugadores.at(i).getNombre() <<" su puntaje actual es de: "<<jue.jugadores.at(i).getPuntaje()<<endl;
 					
 					if(jue.jugadores.at(i).getPuntaje()==21){
 						
@@ -842,4 +941,115 @@ void control::continuar(bool finale){
 		
 	} while(!yu);
 	jue.mazito.vaciarMazo();
+}
+
+void control::menuUniversal(int valor){
+	
+	bool finale = true;
+	string nombre;
+	jue.mazito.llenarMazo();
+	jue.mazito.revolver();
+	do{
+		//ASIGNANDO JUGADORES Y PRIMERA APUESTA
+		for(int i=0;i<valor;i++){
+			cout<<"Digite su nombre: \n";
+			cin>>nombre;
+			
+			jue.agregarJugador(new jugador(nombre));
+			cout<<"\n\n";
+			system("pause");
+			system("cls");
+			apostar(i);
+		}
+		
+		jue.agregarJugador(new jugador("Maquina"));
+		jue.jugadores.back().setMonedas(999);
+		jue.jugadores.back().setApuesta(50);
+		//---------------------------------------------------------------
+		
+		
+		//REPARTIENDO CARTAS
+		for(int i=0;i<valor;i++){
+			cout<<"Repartiendo Cartas\n";
+			cout<<"Carta para "<<jue.jugadores.at(i).getNombre()<<"\n";
+			
+			carta dar1 = jue.reparteCarta();
+			
+			//verifica si es un as o no
+			esAs(dar1,i);
+			
+			jue.jugadores.at(i).recibeCarta(dar1);
+			system("pause");
+			system("cls");
+			
+		}
+		
+		cout<<"Carta para la maquina\n";
+		carta dar2 = jue.reparteCarta();
+		
+		if(dar2.getValor() == "A"){
+			
+			jue.jugadores.back().setPuntaje(jue.jugadores.back().getPuntaje() + 1);
+			
+		}
+		jue.jugadores.back().recibeCarta(dar2);
+		
+		//--------------------------------------------------------------
+		
+		
+		//DOBLANDO APUESTA 
+		for(int i=0;i<valor;i++){
+			doblarApuesta(i);
+			system("pause");
+			system("cls");
+		}
+		//-------------------------------------------------------------
+		
+		// SEGUNDA RONDA DE CARTAS
+		for(int i=0;i<valor;i++){
+			cout<<"Repartiendo Cartas\n";
+			cout<<"Carta para "<<jue.jugadores.at(i).getNombre()<<"\n";
+			
+			carta dar1 = jue.reparteCarta();
+			
+			//verifica si es un as o no
+			esAs(dar1,i);
+			
+			jue.jugadores.at(i).recibeCarta(dar1);
+			
+			system("pause");
+			system("cls");
+			cout<<"Su puntaje actual es de: "<<jue.jugadores.at(i).getPuntaje()<<endl;
+			cout<<"El puntaje actual de la maquina es de: "<<jue.jugadores.back().getPuntaje()<<endl;
+			system("pause");
+			system("cls");
+			pidiendoSegundaCarta(i);
+		}
+		
+		cout<<"Carta para la maquina\n";
+		carta dar5 = jue.reparteCarta();
+		if(dar5.getValor() == "A"){
+			
+			jue.jugadores.back().setPuntaje(jue.jugadores.back().getPuntaje() + 1);
+			
+		}
+		jue.jugadores.back().recibeCarta(dar5);
+		//------------------------------------------------------------
+		
+		//DECIDIENDO GANADOR, MOSTRANDO JUGADORES Y PREGUNTANDO CONTINUIDAD
+		system("pause");
+		system("cls");
+		cout<<jue.decidirGanadorRonda();
+		system("pause");
+		system("cls");
+		cout<<"Jugadores de la partida en esta ronda: \n\n";
+		cout<<jue.mostrarJugadores();
+		system("pause");
+		system("cls");
+		jue.resetRonda();
+		
+		
+		continuar(finale);
+		//------------------------------------------------------------
+	}while(jue.checkeaMonedas() && !finale);
 }

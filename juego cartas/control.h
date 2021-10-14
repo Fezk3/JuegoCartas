@@ -18,7 +18,7 @@ public:
 	void menu1ply();
 	void menu2ply();
 	void menu3play();
-	
+	void menuUniversal(int);
 	
 	void apostar(int );
 	void esAs(carta , int);
