@@ -92,7 +92,7 @@ void control::apostar(int i){
 	bool sale=false;
 	do{
 		int apuesta;
-		cout<<"\tjugador:	"<<jue.jugadores.at(i).getNombre()<<"\n";
+		cout<<"jugador:"<<jue.jugadores.at(i).getNombre()<<"\n";
 		cout<<"Usted dispone de: "<<jue.jugadores.at(i).getMonedas()<<"\n";
 		cout<<"Digite el numero de monedas que quiere apostar en esta ronda: \n";
 		cin>>apuesta;
@@ -214,6 +214,7 @@ void control::doblarApuesta(int i){
 }
 
 void control::pidiendoSegundaCarta(int i){
+	
 	if(jue.jugadores.at(i).getPuntaje() < 21){
 		int op1;
 		do{
@@ -376,16 +377,10 @@ void control::menuUniversal(int valor){
 		//--------------------------------------------------------------
 		
 		
-		//DOBLANDO APUESTA 
-		for(int i=0;i<valor;i++){
-			doblarApuesta(i);
-			system("pause");
-			system("cls");
-		}
-		//-------------------------------------------------------------
-		
 		// SEGUNDA RONDA DE CARTAS
 		for(int i=0;i<valor;i++){
+			system("pause");
+			system("cls");
 			cout<<"Repartiendo Cartas\n";
 			cout<<"Carta para "<<jue.jugadores.at(i).getNombre()<<"\n";
 			
@@ -396,14 +391,24 @@ void control::menuUniversal(int valor){
 			
 			jue.jugadores.at(i).recibeCarta(dar1);
 			
-			system("pause");
-			system("cls");
-			cout<<"Su puntaje actual es de: "<<jue.jugadores.at(i).getPuntaje()<<endl;
+			cout<<jue.jugadores.at(i).getNombre()<<" su puntaje actual es de: "<<jue.jugadores.at(i).getPuntaje()<<endl;
+			cout<<"El puntaje actual de la maquina es de: "<<jue.jugadores.back().getPuntaje()<<endl;
+			
+			//DOBLANDO APUESTA 
+			for(int i=0;i<valor;i++){
+				doblarApuesta(i);
+				system("pause");
+				system("cls");
+			}
+			
+			cout<<jue.jugadores.at(i).getNombre()<<" su puntaje actual es de: "<<jue.jugadores.at(i).getPuntaje()<<endl;
 			cout<<"El puntaje actual de la maquina es de: "<<jue.jugadores.back().getPuntaje()<<endl;
 			system("pause");
 			system("cls");
 			pidiendoSegundaCarta(i);
 		}
+		
+		//-------------------------------------------------------------
 		
 		cout<<"Carta para la maquina\n";
 		carta dar5 = jue.reparteCarta();
