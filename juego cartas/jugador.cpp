@@ -82,6 +82,7 @@ string jugador::toString(){
     x<<"El nombre es: "<<nombre<<"\n";
 	x<<"Cantidad de monedas: "<<monedas<<"\n";
 	x<<"Cartas en mano: \n";
+	
     while(!pila.empty()){
         carta aux = pila.top();
 		x<<aux.toString();
