@@ -335,7 +335,7 @@ void control::menuUniversal(int valor){
 	//ASIGNANDO JUGADORES Y PRIMERA APUESTA
 	for(int i=0;i<valor;i++){
 		
-		cout<<"Digite su nombre: \n";
+		cout<<"Digite el nombre del jugador "<<i+1<<"\n";
 		cin>>nombre;
 		
 		jue.agregarJugador(new jugador(nombre));
