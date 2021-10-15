@@ -10,7 +10,7 @@ juego::juego() {
 
 void juego::resetRonda(){
 	
-	jugadores.at(1).setMonedas(999);
+	jugadores.back().setMonedas(999);
 	
 	for(int i=0;i<jugadores.size();i++){
 		

@@ -320,6 +320,8 @@ bool control::continuar(bool finale){
 		}
 		
 	} while(!yu);
+	
+	return true;
 
 }
 
@@ -344,8 +346,8 @@ void control::menuUniversal(int valor){
 	}
 	
 	jue.agregarJugador(new jugador("Maquina"));
-	jue.jugadores.back().setMonedas(999);
-	jue.jugadores.back().setApuesta(50);
+	jue.jugadores.at(valor).setMonedas(999);
+	jue.jugadores.at(valor).setApuesta(50);
 	
 	do{
 		
