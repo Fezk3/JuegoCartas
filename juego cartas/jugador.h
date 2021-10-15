@@ -17,10 +17,12 @@ public:
 	int getPuntaje();
 	void DoblarApuesta();
     string toString();
-	stack<carta> pila;
 	void definirPuntaje(carta);
 	string getNombre();
     
+	//Atributo Pila
+	stack<carta> pila;
+	
 private:
     string nombre;
     int monedas;

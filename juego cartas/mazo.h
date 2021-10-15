@@ -12,9 +12,11 @@ public:
     void llenarMazo();
     string mostrar();
 	void revolver();
-	//atributo
-    queue<carta> maz;
 	void vaciarMazo();
+	
+	//atributo COLA
+	queue<carta> maz;
+	
 };
 
 #endif /* MAZO_H */
